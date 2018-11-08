@@ -1,32 +1,81 @@
-.App {
-  text-align: center;
+* {
+  box-sizing: border-box;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
+body {
+  padding: 5% 0;
+  font-size: 18px;
+  width: 90%;
+  padding: 0;
+  margin: auto;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+
+
+#todoapp {
+  width: 40rem;
+  margin: auto;
+  border: 1px solid dimgrey;
 }
 
-.App-link {
-  color: #61dafb;
+#header {
+  border-bottom: 1px solid dimgrey;
+  height: 10%;
+  padding: 1rem;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#new-todo {
+  width: 100%;
+  padding: 1rem 2rem 1rem 1rem;
+  font-size: 18px;
+}
+
+/*section {*/
+/*height: 100%;*/
+/*width: 100%;*/
+/*!*border: 1px solid black;*!*/
+/*}*/
+
+#root{
+  padding:1%;
+  width: 40rem;
+  margin: auto;
+  border: 1px solid dimgrey;
+}
+
+ul{
+  margin:  0;
+}
+li {
+  margin: 1rem;
+  height: auto;
+  border: 3px solid green;
+  list-style: none;
+}
+
+.completed {
+  color: gray;
+  text-decoration: line-through;
+}
+
+.hidden{
+  display: none;
+}
+
+.text {
+  width: 90%;
+  text-overflow: ellipsis;
+  border: none;
+}
+
+.checked {
+  text-decoration: line-through;
+  color: gray;
+}
+
+#submit {
+  position: absolute;
+  top: 1rem;
+  right: 0;
+  width: auto;
 }
