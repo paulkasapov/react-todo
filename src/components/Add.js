@@ -50,7 +50,6 @@ class Add extends React.Component {
                 <button
                     type="submit"
                     className="add__btn"
-                    // onClick={this.onBtnClickHandler}
                     disabled={!this.validate()}
                 >
                     Add ToDo

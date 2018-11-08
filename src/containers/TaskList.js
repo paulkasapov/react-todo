@@ -11,18 +11,8 @@ class TaskList extends React.Component {
         const { data } = this.props
         // console.log("this tasklist",this)
         let newsTemplate = null
-        console.log("data.lenght", data.length)
         if (data.length) {
             newsTemplate = data.map(function(item) {
-                // console.log("data", data[i].done, i)
-                // i++
-                // if (data.item.done === true){
-                //     i++;
-                //     console.log("i",i)
-                // }else {
-                //     j++;
-                //     console.log("i",i)
-                // }
                 return <Task key={item.id} data={item} setDone={setDone.bind(this)} remove={remove.bind(this)}/>
             })
         } else {
@@ -31,8 +21,6 @@ class TaskList extends React.Component {
         return newsTemplate
     }
     render() {
-        const { data } = this.props
-        // console.log("this props tasklist",this.props)
         return (
             <ul className="todo-list">
                 {this.renderTasks(this.props.remove, this.props.setDone)}

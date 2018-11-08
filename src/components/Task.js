@@ -1,7 +1,7 @@
-import React from 'react' // мы обязаны импортировать необходимые пакеты в каждом файле
-import PropTypes from 'prop-types' // у Task это react и prop-types
+import React from 'react'
+import PropTypes from 'prop-types'
 
-// далее просто скопировано все что было, кроме последней строки
+
 
 
 class Task extends React.Component {
@@ -11,14 +11,7 @@ class Task extends React.Component {
     }
     handleDone = () => {
         this.props.setDone(this.props.data.id)
-        // this.setState({done : !this.state.done})
     }
-    // handleReadOnlyOff = e => {
-    //     this.setState({readOnly : false})
-    // }
-    // handleReadOnlyOn = e => {
-    //     this.setState({readOnly: true})
-    // }
     handleReadOnlyToggle = e => {
             this.setState({readOnly : !this.state.readOnly})
         }
@@ -26,19 +19,12 @@ class Task extends React.Component {
         const { id, value } = e.currentTarget
         this.setState({ [id]: value })
     };
-    // handleDelete = ({remove}) => {
-    //     remove(this.state.id)
-    // }
     handleDelete = () => {
         this.props.remove(this.props.data.id)
     }
 
     render() {
-
-
         const { text } = this.props.data
-        // const { done } = this.state.done
-        console.log("this.state", this.state)
         return (
             <li className="todo-item">
                 <input type="checkbox"
@@ -61,9 +47,9 @@ class Task extends React.Component {
 
 Task.propTypes = {
     data: PropTypes.shape({
-        id: PropTypes.number.isRequired, // добавили id, это число, обязательно
+        id: PropTypes.number.isRequired,
         text: PropTypes.string.isRequired,
     }),
 }
 
-export { Task } // именованный экспорт
+export { Task }
