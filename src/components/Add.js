@@ -6,6 +6,7 @@ class Add extends React.Component {
     state = {
         text: ""
     };
+
     submitHandler = e => {
         e.preventDefault();
         let { text } = this.state;
@@ -55,6 +56,7 @@ class Add extends React.Component {
                     Add ToDo
                 </button>
             </form>
+
         );
     }
 }

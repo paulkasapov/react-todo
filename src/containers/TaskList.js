@@ -1,30 +1,33 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Task } from '../components/Task'
-// let i=0;
-// let j=0;
 
 
 class TaskList extends React.Component {
 
-    renderTasks = (remove, setDone) => {
-        const { data } = this.props
-        // console.log("this tasklist",this)
-        let newsTemplate = null
-        if (data.length) {
-            newsTemplate = data.map(function(item) {
-                return <Task key={item.id} data={item} setDone={setDone.bind(this)} remove={remove.bind(this)}/>
+    renderTasks = (setDone, remove) => {
+
+        const  data  = this.props.data
+
+        let todoList = null
+        if (data) {
+            todoList = data.map(function(item) {
+                return <Task key={item.id} data={item} setDone={setDone} remove={remove}/>
             })
         } else {
-            newsTemplate = <p>Your list is empty</p>
+            todoList = <p>Your list is empty</p>
         }
-        return newsTemplate
+        return todoList
     }
+
     render() {
         return (
-            <ul className="todo-list">
-                {this.renderTasks(this.props.remove, this.props.setDone)}
-            </ul>
+            <React.Fragment>
+
+                <ul className="todo-list">
+                    {this.renderTasks(this.props.setDone, this.props.remove)}
+                </ul>
+            </React.Fragment>
         )
     }
 }

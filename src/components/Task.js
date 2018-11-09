@@ -2,13 +2,12 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 
-
-
 class Task extends React.Component {
 
     state = {
         readOnly: true
     }
+
     handleDone = () => {
         this.props.setDone(this.props.data.id)
     }
@@ -42,7 +41,6 @@ class Task extends React.Component {
             </li>
         )
     }
-
 }
 
 Task.propTypes = {
