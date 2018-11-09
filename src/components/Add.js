@@ -36,12 +36,15 @@ class Add extends React.Component {
     render() {
         const { text} = this.state
         return (
+
             <form className="add" onSubmit={this.submitHandler}>
+                {/*<input id="checkbox"*/}
+                       {/*type="checkbox"/>*/}
                 <input
                     id="text"
                     onChange={this.handleChange}
                     className="add__text"
-                    placeholder="Что нужно сделать?"
+                    placeholder="What needs to be done?"
                     value={text}
                     autoFocus={true}
                     ref={el => {

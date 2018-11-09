@@ -18,7 +18,7 @@ class Filter extends React.Component {
     counterOfTasks() {
         const tasks = this.props.data;
         const doneCounter = tasks.filter(t => t.done);
-        return (<div>Active : {tasks.length - doneCounter.length} / Done: {doneCounter.length}</div>)
+        return (<div className={"counter"}>Active : {tasks.length - doneCounter.length} / Done: {doneCounter.length}</div>)
     }
 
     handleFilter(){

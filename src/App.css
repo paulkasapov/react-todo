@@ -1,81 +1,85 @@
-* {
-  box-sizing: border-box;
+html{
+    background-color: lightgray;
 }
-
-body {
-  padding: 5% 0;
-  font-size: 18px;
-  width: 90%;
-  padding: 0;
-  margin: auto;
-}
-
-
-
-#todoapp {
-  width: 40rem;
-  margin: auto;
-  border: 1px solid dimgrey;
-}
-
-#header {
-  border-bottom: 1px solid dimgrey;
-  height: 10%;
-  padding: 1rem;
-}
-
-#new-todo {
-  width: 100%;
-  padding: 1rem 2rem 1rem 1rem;
-  font-size: 18px;
-}
-
-/*section {*/
-/*height: 100%;*/
-/*width: 100%;*/
-/*!*border: 1px solid black;*!*/
-/*}*/
 
 #root{
-  padding:1%;
-  width: 40rem;
-  margin: auto;
+  padding:25px;
+  width: 768px;
+  margin: 50px auto;
   border: 1px solid dimgrey;
+    background-color: white;
+}
+
+.add{
+    position: relative;
+
+}
+
+.add #text{
+    font-size: 24px;
+    width: calc(100% - 195px);
+    padding: 16px 16px 16px 40px;
+    font-style: italic;
+}
+
+.add #checkbox{
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    left: 5px;
+    top: 18px;
+}
+
+.add button{
+    width: 130px;
+    height: 64px;
+    font-size: 24px;
+}
+
+.filter{
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.counter{
+    display: inline-block;
+    font-size: 20px;
+    padding: 3px 0;
+}
+
+.filter>button{
+    float: right;
+    font-size: 20px;
+    margin: 0 5px;
 }
 
 ul{
-  margin:  0;
-}
-li {
-  margin: 1rem;
-  height: auto;
-  border: 3px solid green;
-  list-style: none;
+    padding-left: 0;
+    list-style: none;
 }
 
-.completed {
-  color: gray;
-  text-decoration: line-through;
+.todo-item{
+    padding: 12px 0;
+    border-bottom: 1px solid lightgray;
 }
 
-.hidden{
-  display: none;
+.checkbox{
+    width: 20px;
+    height: 20px;
+    margin-right: 15px;
 }
 
-.text {
-  width: 90%;
-  text-overflow: ellipsis;
-  border: none;
+.todo-item .text, .todo-item .delete{
+    vertical-align: 2px;
+    font-size: 24px;
 }
 
-.checked {
-  text-decoration: line-through;
-  color: gray;
+.todo-item .text{
+    width: calc(100% - 130px);
+    border: none;
+    background-color: white;
 }
 
-#submit {
-  position: absolute;
-  top: 1rem;
-  right: 0;
-  width: auto;
+button{
+    background-color: white;
 }

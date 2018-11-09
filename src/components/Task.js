@@ -27,6 +27,7 @@ class Task extends React.Component {
         return (
             <li className="todo-item">
                 <input type="checkbox"
+                       className={"checkbox"}
                        onClick={this.handleDone}
                        defaultChecked={this.props.data.done}
                 />
