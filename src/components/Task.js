@@ -29,7 +29,7 @@ class Task extends React.Component {
                 <input type="checkbox"
                        className={"checkbox"}
                        onClick={this.handleDone}
-                       defaultChecked={this.props.data.done}
+                       checked={this.props.data.done}
                 />
                 <input className="text"
                        defaultValue={text}

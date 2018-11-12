@@ -18,6 +18,10 @@ class Filter extends React.Component {
     counterOfTasks() {
         const tasks = this.props.data;
         const doneCounter = tasks.filter(t => t.done);
+        if(tasks.length > 0){
+            this.props.checkAllDone(tasks.length - doneCounter.length)
+        }
+
         return (<div className={"counter"}>Active : {tasks.length - doneCounter.length} / Done: {doneCounter.length}</div>)
     }
 

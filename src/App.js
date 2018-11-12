@@ -8,7 +8,8 @@ import {Filter} from "./components/Filter";
 class App extends React.Component {
 
     state = {
-        tasks: TasksData
+        tasks: TasksData,
+        allDone: false
     }
 
     handleAddTasks = data => {
@@ -33,13 +34,51 @@ class App extends React.Component {
         clickedElement.done = !clickedElement.done
         this.setState({clickedElement})
     }
+    allDoneHandler = () => {
+        const tasks = this.state.tasks
+        if (this.state.allDone){
+            tasks.forEach(function(item) {
+                item.done = false;
+            })
+        }
+        else {
+            tasks.forEach(function(item) {
+                item.done = true;
+            })
+
+        }
+        this.setState({tasks : tasks})
+    }
+    handlerCheckAllDone = (difference) => {
+        if(this.state.tasks){
+            if (difference == 0){
+                if (this.state.allDone == false) {
+                    this.setState({allDone:true})
+                }
+            }
+            else {
+                if (this.state.allDone == true){
+                    this.setState({allDone:false})
+                }
+
+            }
+        }
+    }
+
 
     render() {
 
         return (
             <React.Fragment>
-                <Add onAddTasks={this.handleAddTasks}/>
-                <Filter  data={this.state.tasks} setDone={this.handleDone} remove={this.handleRemove} removeDone={this.handleRemoveDone}/>
+                <Add onAddTasks={this.handleAddTasks}
+                     allDone={this.allDoneHandler}
+                     allDoneState={this.state.allDone}
+                />
+                <Filter  data={this.state.tasks}
+                         setDone={this.handleDone}
+                         remove={this.handleRemove}
+                         removeDone={this.handleRemoveDone}
+                         checkAllDone={this.handlerCheckAllDone} />
             </React.Fragment>
         )
     }

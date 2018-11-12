@@ -8,11 +8,7 @@ html{
   margin: 50px auto;
   border: 1px solid dimgrey;
     background-color: white;
-}
-
-.add{
     position: relative;
-
 }
 
 .add #text{
@@ -22,12 +18,12 @@ html{
     font-style: italic;
 }
 
-.add #checkbox{
+#checkbox-alldone{
     position: absolute;
     width: 20px;
     height: 20px;
-    left: 5px;
-    top: 18px;
+    left: 33px;
+    top: 43px;;
 }
 
 .add button{

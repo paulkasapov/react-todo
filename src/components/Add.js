@@ -34,12 +34,15 @@ class Add extends React.Component {
     };
 
     render() {
+        console.log("this.props Add.ls", this.props)
         const { text} = this.state
         return (
-
             <form className="add" onSubmit={this.submitHandler}>
-                {/*<input id="checkbox"*/}
-                       {/*type="checkbox"/>*/}
+                <input id="checkbox-alldone"
+                       type="checkbox"
+                       onClick={this.props.allDone}
+                       checked={this.props.allDoneState}
+                />
                 <input
                     id="text"
                     onChange={this.handleChange}
