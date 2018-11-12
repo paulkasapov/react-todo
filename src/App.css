@@ -1,81 +1,87 @@
-html{
-    background-color: lightgray;
+*{
+    box-sizing: border-box;
+
 }
 
-#root{
-  padding:25px;
-  width: 768px;
-  margin: 50px auto;
-  border: 1px solid dimgrey;
-    background-color: white;
-    position: relative;
-}
+/*html{*/
+    /*background-color: lightgray;*/
+/*}*/
 
-.add #text{
-    font-size: 24px;
-    width: calc(100% - 195px);
-    padding: 16px 16px 16px 40px;
-    font-style: italic;
-}
+/*#root{*/
+  /*padding:25px;*/
+  /*width: 768px;*/
+  /*margin: 50px auto;*/
+  /*border: 1px solid dimgrey;*/
+    /*background-color: white;*/
+    /*position: relative;*/
+/*}*/
 
-#checkbox-alldone{
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    left: 33px;
-    top: 43px;;
-}
+/*.add #text{*/
+    /*width: 100%;*/
+    /*font-size: 24px;*/
+    /*width: 100%;*/
+    /*padding: 16px 16px 16px 40px;*/
+    /*font-style: italic;*/
+/*}*/
 
-.add button{
-    width: 130px;
-    height: 64px;
-    font-size: 24px;
-}
+/*#checkbox-alldone{*/
+    /*position: absolute;*/
+    /*width: 20px;*/
+    /*height: 20px;*/
+    /*left: 33px;*/
+    /*top: 43px;;*/
+/*}*/
 
-.filter{
-    padding-top: 20px;
-    padding-bottom: 20px;
-}
+/*.add button{*/
+    /*width: 100%;*/
+    /*height: 64px;*/
+    /*font-size: 20px;*/
+    /*vertical-align: top;*/
+/*}*/
 
-.counter{
-    display: inline-block;
-    font-size: 20px;
-    padding: 3px 0;
-}
+/*.filter{*/
+    /*padding-top: 20px;*/
+    /*padding-bottom: 20px;*/
+/*}*/
 
-.filter>button{
-    float: right;
-    font-size: 20px;
-    margin: 0 5px;
-}
+/*.counter{*/
+    /*display: inline-block;*/
+    /*font-size: 20px;*/
+    /*padding: 3px 0;*/
+/*}*/
 
-ul{
-    padding-left: 0;
-    list-style: none;
-}
+/*.filter>button{*/
+    /*float: right;*/
+    /*font-size: 18px;*/
+/*}*/
 
-.todo-item{
-    padding: 12px 0;
-    border-bottom: 1px solid lightgray;
-}
+/*ul{*/
+    /*padding-left: 0;*/
+    /*list-style: none;*/
+/*}*/
 
-.checkbox{
-    width: 20px;
-    height: 20px;
-    margin-right: 15px;
-}
+/*.todo-item{*/
+    /*padding: 12px 0;*/
+    /*border-bottom: 1px solid lightgray;*/
+/*}*/
 
-.todo-item .text, .todo-item .delete{
-    vertical-align: 2px;
-    font-size: 24px;
-}
+/*.checkbox{*/
+    /*width: 20px;*/
+    /*height: 20px;*/
+    /*margin-right: 15px;*/
+/*}*/
 
-.todo-item .text{
-    width: calc(100% - 130px);
-    border: none;
-    background-color: white;
-}
+/*.todo-item .text, .todo-item .delete{*/
+    /*vertical-align: 2px;*/
+    /*font-size: 24px;*/
+/*}*/
 
-button{
-    background-color: white;
-}
+/*.todo-item .text{*/
+    /*width: calc(100% - 130px);*/
+    /*border: none;*/
+    /*background-color: white;*/
+/*}*/
+
+/*button{*/
+    /*background-color: white;*/
+/*}*/

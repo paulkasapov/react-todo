@@ -1,7 +1,6 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { Task } from '../components/Task'
-
+import List from '@material-ui/core/List';
 
 class TaskList extends React.Component {
 
@@ -26,16 +25,12 @@ class TaskList extends React.Component {
         return (
             <React.Fragment>
 
-                <ul className="todo-list">
+                <List>
                     {this.renderTasks(this.props.setDone, this.props.remove)}
-                </ul>
+                </List>
             </React.Fragment>
         )
     }
-}
-
-TaskList.propTypes = {
-    data: PropTypes.array.isRequired,
 }
 
 export { TaskList }

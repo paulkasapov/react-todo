@@ -51,13 +51,13 @@ class App extends React.Component {
     }
     handlerCheckAllDone = (difference) => {
         if(this.state.tasks){
-            if (difference == 0){
-                if (this.state.allDone == false) {
+            if (difference === 0){
+                if (this.state.allDone === false) {
                     this.setState({allDone:true})
                 }
             }
             else {
-                if (this.state.allDone == true){
+                if (this.state.allDone === true){
                     this.setState({allDone:false})
                 }
 
@@ -65,10 +65,9 @@ class App extends React.Component {
         }
     }
 
-
     render() {
-
         return (
+            console.log(this),
             <React.Fragment>
                 <Add onAddTasks={this.handleAddTasks}
                      allDone={this.allDoneHandler}

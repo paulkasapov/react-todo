@@ -1,6 +1,6 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { TaskList } from '../containers/TaskList'
+import Button from '@material-ui/core/Button';
 
 const ALL = 0;
 const ONLY_ACTIVE = 1;
@@ -12,17 +12,18 @@ class Filter extends React.Component {
     state = {
         counterOfDone : 0,
         counterOfNotDone: 0,
-        currentFilter: ALL
+        currentFilter: ALL,
     }
 
     counterOfTasks() {
         const tasks = this.props.data;
-        const doneCounter = tasks.filter(t => t.done);
-        if(tasks.length > 0){
-            this.props.checkAllDone(tasks.length - doneCounter.length)
+        const tasksCounter = tasks.length;
+        const doneCounter = tasks.filter(t => t.done).length;
+        const activeCounter = tasksCounter - doneCounter;
+        if(tasksCounter > 0){
+            this.props.checkAllDone(activeCounter)
         }
-
-        return (<div className={"counter"}>Active : {tasks.length - doneCounter.length} / Done: {doneCounter.length}</div>)
+        return ("Active : " + activeCounter + " / Done: "+ doneCounter)
     }
 
     handleFilter(){
@@ -31,17 +32,14 @@ class Filter extends React.Component {
         switch (this.state.currentFilter) {
             case ALL:
                 filteredData = data;
-                console.log("filteredDataALL",filteredData);
              return filteredData;
 
         case ONLY_ACTIVE:
                 filteredData = data.filter(t => !t.done);
-            console.log("filteredDataOnlyActive",filteredData);
             return filteredData;
 
         case ONLY_COMPLETE:
                 filteredData = data.filter(t => t.done);
-            console.log("filteredDataOnlyComplete",filteredData);
             return filteredData;
 
         default:
@@ -55,27 +53,19 @@ class Filter extends React.Component {
 
     render() {
         return (
-
             <React.Fragment>
                 <div className="filter">
-                    {this.counterOfTasks()}
-                    <button onClick={()=>this.handleFilterChange(ALL)}>Show All</button>
-                    <button onClick={()=>this.handleFilterChange(ONLY_ACTIVE)}>Show Active</button>
-                    <button onClick={()=>this.handleFilterChange(ONLY_COMPLETE)}>Show Done</button>
-                    <button onClick={this.props.removeDone}>Clear ALL Done</button>
+                    <div className={"counter"}>{this.counterOfTasks()}</div>
+                    <Button onClick={()=>this.handleFilterChange(ALL)}>Show All</Button>
+                    <Button onClick={()=>this.handleFilterChange(ONLY_ACTIVE)}>Show Active</Button>
+                    <Button onClick={()=>this.handleFilterChange(ONLY_COMPLETE)}>Show Done</Button>
+                    <Button onClick={this.props.removeDone}>Clear ALL Done</Button>
                 </div>
 
                 <TaskList data={this.handleFilter()} remove={this.props.remove} setDone={this.props.setDone}/>
             </React.Fragment>
         )
     }
-}
-
-Filter.propTypes = {
-    data: PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        text: PropTypes.string.isRequired,
-    }),
 }
 
 export { Filter }
