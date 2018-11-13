@@ -3,16 +3,18 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Checkbox from '@material-ui/core/Checkbox';
 import TextField from "@material-ui/core/TextField/TextField";
+
 let index = 0;
 
 class Add extends React.Component {
+
     state = {
         text: ""
     };
 
     submitHandler = e => {
         e.preventDefault();
-        let { text } = this.state;
+        let {text} = this.state;
 
         text = text.trim();
         this.props.onAddTasks({
@@ -21,15 +23,15 @@ class Add extends React.Component {
             done: false
         });
         index++;
-        this.setState({text:''})
+        this.setState({text: ''})
         // this.textInput.focus();
     };
     handleChange = e => {
-        const { id, value } = e.currentTarget
-        this.setState({ [id]: value })
+        const {id, value} = e.currentTarget
+        this.setState({[id]: value})
     };
     validate = () => {
-        const { text } = this.state;
+        const {text} = this.state;
         if (text.trim()) {
             return true;
         }
@@ -37,48 +39,38 @@ class Add extends React.Component {
     };
 
     render() {
-        const { text} = this.state
+        const {text} = this.state
         return (
             <form className="add" onSubmit={this.submitHandler}>
                 <Grid container
                       direction="row"
-                      justify="flex-start"
+                      justify="space-between"
                       alignItems="center"
                       spacing={0}>
-                    <Grid item xs={1}>
+                    <Grid item>
                         <Checkbox id="checkbox-alldone"
-                               type="checkbox"
-                               onClick={this.props.allDone}
-                               checked={this.props.allDoneState}
-                                  color={"primary"  }
+                                  type="checkbox"
+                                  onClick={this.props.allDone}
+                                  checked={this.props.allDoneState}
+                                  color={"primary"}
                         />
                     </Grid>
-                    <Grid item xs={8}>
+                    <Grid item xs zeroMinWidth>
                         <TextField
                             id="text"
                             onChange={this.handleChange}
                             className="add__text"
                             placeholder="What needs to be done?"
                             value={text}
-                            autoFocus={true}
                             ref={el => {
                                 this.textInput = el;
                             }}
                             margin="normal"
+                            fullWidth
+                            autoFocus
                         />
-                        {/*<input*/}
-                        {/*id="text"*/}
-                        {/*onChange={this.handleChange}*/}
-                        {/*className="add__text"*/}
-                        {/*placeholder="What needs to be done?"*/}
-                        {/*value={text}*/}
-                        {/*autoFocus={true}*/}
-                        {/*ref={el => {*/}
-                            {/*this.textInput = el;*/}
-                        {/*}}*/}
-                        {/*/>*/}
                     </Grid>
-                    <Grid item xs={3}>
+                    <Grid item>
                         <Button
                             type="submit"
                             className="add__btn"
@@ -86,8 +78,8 @@ class Add extends React.Component {
                             variant="contained"
                             color="primary"
                         >
-                        Add ToDo
-                    </Button>
+                            Add ToDo
+                        </Button>
                     </Grid>
                 </Grid>
             </form>

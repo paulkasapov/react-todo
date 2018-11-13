@@ -1,16 +1,15 @@
 import React from 'react'
-import { Task } from '../components/Task'
+import {Task} from '../components/Task'
 import List from '@material-ui/core/List';
+
 
 class TaskList extends React.Component {
 
     renderTasks = (setDone, remove) => {
-
-        const  data  = this.props.data
-
+        const data = this.props.data
         let todoList = null
         if (data) {
-            todoList = data.map(function(item) {
+            todoList = data.map(function (item) {
                 return <Task key={item.id} data={item} setDone={setDone} remove={remove}/>
             })
         } else {
@@ -18,8 +17,6 @@ class TaskList extends React.Component {
         }
         return todoList
     }
-
-
 
     render() {
         return (
@@ -33,4 +30,4 @@ class TaskList extends React.Component {
     }
 }
 
-export { TaskList }
+export {TaskList}
