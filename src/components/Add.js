@@ -3,6 +3,9 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Checkbox from '@material-ui/core/Checkbox';
 import TextField from "@material-ui/core/TextField/TextField";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 let index = 0;
 
@@ -11,6 +14,12 @@ class Add extends React.Component {
     state = {
         text: ""
     };
+
+    notifyAdd = () => {
+        toast.success("Todo Added!", {
+            position: toast.POSITION.BOTTOM_RIGHT
+        });
+    }
 
     submitHandler = e => {
         e.preventDefault();
@@ -77,9 +86,11 @@ class Add extends React.Component {
                             disabled={!this.validate()}
                             variant="contained"
                             color="primary"
+                            onClick={this.notifyAdd}
                         >
                             Add ToDo
                         </Button>
+                        <ToastContainer />
                     </Grid>
                 </Grid>
             </form>

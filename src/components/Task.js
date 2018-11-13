@@ -5,6 +5,7 @@ import TextField from '@material-ui/core/TextField';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Grid from "@material-ui/core/Grid/Grid";
+import {toast} from "react-toastify";
 
 
 class Task extends React.Component {
@@ -13,8 +14,15 @@ class Task extends React.Component {
         readOnly: true
     }
 
+    notifyChanged = () => {
+        toast.success("Todo Changed!", {
+            position: toast.POSITION.BOTTOM_RIGHT
+        });
+    }
+
     handleDone = () => {
         this.props.setDone(this.props.data.id)
+        this.notifyChanged()
     }
     handleReadOnlyToggle = e => {
         this.setState({readOnly: !this.state.readOnly})
@@ -22,6 +30,7 @@ class Task extends React.Component {
     handleChange = e => {
         const {id, value} = e.currentTarget
         this.setState({[id]: value})
+        this.notifyChanged()
     };
     handleDelete = () => {
         this.props.remove(this.props.data.id)
@@ -46,8 +55,8 @@ class Task extends React.Component {
                         defaultValue={text}
                         disabled={this.state.readOnly}
                         onDoubleClick={this.handleReadOnlyToggle}
-                        onBlur={this.handleReadOnlyToggle}
-                        onChange={this.handleChange}
+                        onBlur={this.handleReadOnlyToggle && this.handleChange}
+
                         margin="normal"
                         fullWidth
                     />

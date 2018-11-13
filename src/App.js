@@ -6,6 +6,7 @@ import {Filter} from "./components/Filter";
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
+import {toast} from "react-toastify";
 
 class App extends React.Component {
 
@@ -14,6 +15,23 @@ class App extends React.Component {
         allDone: false
     }
 
+    notifyDelete = () => {
+        toast.success("Todo Deleted!", {
+            position: toast.POSITION.BOTTOM_RIGHT
+        });
+    }
+
+    notifyAllDone = () => {
+        toast.success('All todo is "Done" now!', {
+            position: toast.POSITION.BOTTOM_RIGHT
+        });
+    }
+
+    notifyAllNotDone = () => {
+        toast.success('All todo is "Active" now!', {
+            position: toast.POSITION.BOTTOM_RIGHT
+        });
+    }
 
     handleAddTasks = data => {
         const nextTasks = [data, ...this.state.tasks]
@@ -25,6 +43,7 @@ class App extends React.Component {
         if (index === -1) return;
         tasks.splice(index, 1);
         this.setState({tasks})
+        this.notifyDelete()
     }
     handleRemoveDone = () => {
         const tasks = this.state.tasks;
@@ -44,12 +63,13 @@ class App extends React.Component {
             tasks.forEach(function (item) {
                 item.done = false;
             })
+            this.notifyAllNotDone()
         }
         else {
             tasks.forEach(function (item) {
                 item.done = true;
             })
-
+            this.notifyAllDone()
         }
         this.setState({tasks: tasks})
         this.handlerCheckAllDone()
