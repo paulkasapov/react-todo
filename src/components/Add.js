@@ -5,7 +5,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 import TextField from "@material-ui/core/TextField/TextField";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import axios from 'axios';
 
 let index = 0;
 
@@ -27,11 +27,22 @@ class Add extends React.Component {
 
         text = text.trim();
         this.props.onAddTasks({
-            id: index,
             text,
             done: false
         });
-        index++;
+        const todo = {
+            text,
+            done: false
+        };
+        console.log("todo", todo)
+
+        axios.post(`http://localhost:3030/todos/`, { ...todo })
+            .then(res => {
+                console.log(res);
+                console.log(res.data);
+                this.notifyAdd();
+            })
+        // index++;
         this.setState({text: ''})
         // this.textInput.focus();
     };
@@ -86,7 +97,6 @@ class Add extends React.Component {
                             disabled={!this.validate()}
                             variant="contained"
                             color="primary"
-                            onClick={this.notifyAdd}
                         >
                             Add ToDo
                         </Button>

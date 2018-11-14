@@ -1,18 +1,27 @@
 import React from 'react'
 import {Add} from './components/Add'
-import TasksData from './data/TasksData'
 import './App.css'
 import {Filter} from "./components/Filter";
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import {toast} from "react-toastify";
+import axios from 'axios';
 
 class App extends React.Component {
 
     state = {
-        tasks: TasksData,
+        tasks: [],
         allDone: false
+    }
+
+    componentDidMount() {
+        axios.get(`http://localhost:3030/todos/`)
+            .then(res => {
+                const tasks = res.data;
+                this.setState({ tasks });
+            })
+
     }
 
     notifyDelete = () => {
@@ -36,14 +45,21 @@ class App extends React.Component {
     handleAddTasks = data => {
         const nextTasks = [data, ...this.state.tasks]
         this.setState({tasks: nextTasks})
+
     }
     handleRemove = id => {
-        const tasks = this.state.tasks;
-        const index = tasks.findIndex(a => a.id === id);
-        if (index === -1) return;
-        tasks.splice(index, 1);
-        this.setState({tasks})
-        this.notifyDelete()
+        axios.delete(`http://localhost:3030/todos/remove/${id}`)
+            .then(res => {
+                console.log(res);
+                console.log(res.data);
+                this.notifyDelete()
+            })
+        // const tasks = this.state.tasks;
+        // const index = tasks.findIndex(a => a.id === id);
+        // if (index === -1) return;
+        // tasks.splice(index, 1);
+        // this.setState({tasks})
+
     }
     handleRemoveDone = () => {
         const tasks = this.state.tasks;

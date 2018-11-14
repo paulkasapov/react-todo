@@ -21,23 +21,24 @@ class Task extends React.Component {
     }
 
     handleDone = () => {
-        this.props.setDone(this.props.data.id)
+        this.props.setDone(this.props.data._id)
         this.notifyChanged()
     }
     handleReadOnlyToggle = e => {
         this.setState({readOnly: !this.state.readOnly})
     }
     handleChange = e => {
-        const {id, value} = e.currentTarget
-        this.setState({[id]: value})
+        const {_id, value} = e.currentTarget
+        this.setState({[_id]: value})
         this.notifyChanged()
     };
     handleDelete = () => {
-        this.props.remove(this.props.data.id)
+        this.props.remove(this.props.data._id)
     }
 
     render() {
         const {text} = this.props.data
+        console.log("text",text)
         return (
             <ListItem>
                 <Grid item>

@@ -10,7 +10,7 @@ class TaskList extends React.Component {
         let todoList = null
         if (data) {
             todoList = data.map(function (item) {
-                return <Task key={item.id} data={item} setDone={setDone} remove={remove}/>
+                return <Task key={item._id} data={item} setDone={setDone} remove={remove}/>
             })
         } else {
             todoList = <p>Your list is empty</p>
