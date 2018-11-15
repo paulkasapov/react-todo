@@ -6,6 +6,7 @@ import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Grid from "@material-ui/core/Grid/Grid";
 import {toast} from "react-toastify";
+import axios from "axios";
 
 
 class Task extends React.Component {
@@ -21,24 +22,26 @@ class Task extends React.Component {
     }
 
     handleDone = () => {
-        this.props.setDone(this.props.data._id)
-        this.notifyChanged()
+        this.props.setDone(this.props.data._id, this.props.data.done)
     }
     handleReadOnlyToggle = e => {
         this.setState({readOnly: !this.state.readOnly})
     }
     handleChange = e => {
-        const {_id, value} = e.currentTarget
-        this.setState({[_id]: value})
-        this.notifyChanged()
+        const {value} = e.currentTarget
+        axios.put(`http://localhost:3030/todos/text/${this.props.data._id}`,{value})
+            .then(res => {
+                console.log(res);
+                console.log(res.data);
+                this.notifyChanged();
+                this.props.rerender();
+            })
     };
     handleDelete = () => {
         this.props.remove(this.props.data._id)
     }
-
     render() {
         const {text} = this.props.data
-        console.log("text",text)
         return (
             <ListItem>
                 <Grid item>

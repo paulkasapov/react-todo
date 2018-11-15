@@ -19,7 +19,9 @@ class App extends React.Component {
         axios.get(`http://localhost:3030/todos/`)
             .then(res => {
                 const tasks = res.data;
+                tasks.reverse();
                 this.setState({ tasks });
+                this.handlerCheckAllDone();
             })
 
     }
@@ -30,22 +32,14 @@ class App extends React.Component {
         });
     }
 
-    notifyAllDone = () => {
-        toast.success('All todo is "Done" now!', {
+    notifyChanged = () => {
+        toast.success("Todo Changed!", {
             position: toast.POSITION.BOTTOM_RIGHT
         });
     }
 
-    notifyAllNotDone = () => {
-        toast.success('All todo is "Active" now!', {
-            position: toast.POSITION.BOTTOM_RIGHT
-        });
-    }
-
-    handleAddTasks = data => {
-        const nextTasks = [data, ...this.state.tasks]
-        this.setState({tasks: nextTasks})
-
+    handleRerender = () => {
+        this.componentDidMount()
     }
     handleRemove = id => {
         axios.delete(`http://localhost:3030/todos/remove/${id}`)
@@ -53,42 +47,36 @@ class App extends React.Component {
                 console.log(res);
                 console.log(res.data);
                 this.notifyDelete()
+                this.handleRerender()
             })
-        // const tasks = this.state.tasks;
-        // const index = tasks.findIndex(a => a.id === id);
-        // if (index === -1) return;
-        // tasks.splice(index, 1);
-        // this.setState({tasks})
-
     }
     handleRemoveDone = () => {
-        const tasks = this.state.tasks;
-        const clearedTasks = tasks.filter(t => !t.done);
-        this.setState({tasks: clearedTasks})
+            axios.delete(`http://localhost:3030/todos/removedone`)
+                .then(res => {
+                    console.log(res);
+                    console.log(res.data);
+                    this.notifyDelete()
+                    this.handleRerender()
+                })
     }
-    handleDone = id => {
-        const tasks = this.state.tasks;
-        const clickedElement = tasks.find(a => a.id === id);
-        clickedElement.done = !clickedElement.done
-        this.setState({clickedElement})
-        this.handlerCheckAllDone()
+    handleDone = (id, done) => {
+        axios.put(`http://localhost:3030/todos/done/${id}`,{done})
+            .then(res => {
+                console.log(res);
+                console.log(res.data);
+                this.notifyChanged()
+                this.handleRerender();
+            })
     }
     allDoneHandler = () => {
-        const tasks = this.state.tasks
-        if (this.state.allDone) {
-            tasks.forEach(function (item) {
-                item.done = false;
+        const done = this.state.allDone
+        axios.put(`http://localhost:3030/todos/alldone`,{done})
+            .then(res => {
+                console.log(res);
+                console.log(res.data);
+                this.notifyChanged()
+                this.handleRerender();
             })
-            this.notifyAllNotDone()
-        }
-        else {
-            tasks.forEach(function (item) {
-                item.done = true;
-            })
-            this.notifyAllDone()
-        }
-        this.setState({tasks: tasks})
-        this.handlerCheckAllDone()
     }
     handlerCheckAllDone = () => {
         const tasks = this.state.tasks;
@@ -108,19 +96,18 @@ class App extends React.Component {
             }
         }
     }
-
     render() {
         return (
-
             <Card>
                 <CardContent>
                     <CssBaseline/>
-                    <Add onAddTasks={this.handleAddTasks}
+                    <Add rerender={this.handleRerender}
                          allDone={this.allDoneHandler}
                          allDoneState={this.state.allDone}
                     />
                     <Filter data={this.state.tasks}
                             setDone={this.handleDone}
+                            rerender={this.handleRerender}
                             remove={this.handleRemove}
                             removeDone={this.handleRemoveDone}
                             checkAllDone={this.handlerCheckAllDone}/>

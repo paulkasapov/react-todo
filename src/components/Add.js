@@ -7,7 +7,6 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
 
-let index = 0;
 
 class Add extends React.Component {
 
@@ -24,27 +23,19 @@ class Add extends React.Component {
     submitHandler = e => {
         e.preventDefault();
         let {text} = this.state;
-
         text = text.trim();
-        this.props.onAddTasks({
-            text,
-            done: false
-        });
         const todo = {
             text,
             done: false
         };
-        console.log("todo", todo)
-
         axios.post(`http://localhost:3030/todos/`, { ...todo })
             .then(res => {
                 console.log(res);
                 console.log(res.data);
                 this.notifyAdd();
+                this.props.rerender();
             })
-        // index++;
         this.setState({text: ''})
-        // this.textInput.focus();
     };
     handleChange = e => {
         const {id, value} = e.currentTarget
@@ -82,9 +73,6 @@ class Add extends React.Component {
                             className="add__text"
                             placeholder="What needs to be done?"
                             value={text}
-                            ref={el => {
-                                this.textInput = el;
-                            }}
                             margin="normal"
                             fullWidth
                             autoFocus

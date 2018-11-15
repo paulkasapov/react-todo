@@ -87,7 +87,7 @@ class Filter extends React.Component {
                     </Grid>
                 </div>
 
-                <TaskList data={this.handleFilter()} remove={this.props.remove} setDone={this.props.setDone}/>
+                <TaskList data={this.handleFilter()} remove={this.props.remove} setDone={this.props.setDone} rerender={this.props.rerender}/>
             </React.Fragment>
         )
     }
